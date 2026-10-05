@@ -5,13 +5,14 @@
 | Etapa | O quê | Status |
 |---|---|---|
 | 1 | Inspeção: pasta vazia, sem stack prévia; Node 24, npm 11 | ✅ |
-| 2 | Figma: conector `design:figma` **sem autenticação** → especificação em `FIGMA_GUIDE.md` + `design/tokens.json` + `/styleguide.html` | ✅ (sem escrita no Figma) |
+| 2 | Figma: especificação em `FIGMA_GUIDE.md` + `design/tokens.json` + `/styleguide.html` | ✅ |
 | 3 | Direção de arte: nome, paleta (ajuste AA), tipografia, fotografia, motion | ✅ `DESIGN.md` |
 | 4 | Design system em código: tokens no `@theme`, componentes base, styleguide | ✅ |
 | 5 | Landing completa: 14 seções + detalhe de produto + sacola + formulário + newsletter | ✅ |
 | 6 | Validação: build, typecheck, lint, testes unitários, screenshots em 8 larguras, roteiro de interações | ✅ |
 | 7 | Revisão comercial e anti-slop | ✅ (ver relatório final) |
-| 8 | Montagem do arquivo Figma | ⏳ depende de autenticar o conector ou de execução manual |
+| 8 | Arquivo Figma montado via Plugin API (7 páginas, variáveis, componentes, landing desktop/mobile, protótipo) | ✅ |
+| 9 | Docker (Node 24 build + Nginx) e repositório no GitHub | ✅ |
 
 ## 2. Arquitetura
 
@@ -104,7 +105,8 @@ Fontes via Google Fonts: Fraunces, Figtree, Caveat. Fotos demonstrativas via `im
 
 ## 8. Pendências
 
-- [ ] **Criar o arquivo no Figma** (autenticar conector ou montar com FIGMA_GUIDE + html.to.design).
+- [ ] Mover o arquivo Figma dos Rascunhos para um projeto da equipe e compartilhar com a cliente.
+- [ ] Autenticar o conector Figma (MCP) para sincronização assistida e Code Connect.
 - [ ] Definir nome real, logo final e contatos reais (`src/config/site.ts`).
 - [ ] Fotografar os produtos reais (4:5, luz natural) e substituir em `src/data/images.ts`.
 - [ ] Trocar depoimentos e números por dados reais (ou remover a seção até ter avaliações).

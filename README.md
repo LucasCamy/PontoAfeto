@@ -71,10 +71,10 @@ Fotos do Unsplash recebem recorte e otimização automáticos pela URL; fotos lo
 
 ## Figma
 
-O conector Figma não estava autenticado, então **o arquivo do Figma ainda não existe**. Tudo para montá-lo está em
-[FIGMA_GUIDE.md](FIGMA_GUIDE.md) (páginas, frames, componentes, variantes, variáveis, protótipo, como compartilhar com a cliente)
-e os tokens importáveis em [design/tokens.json](design/tokens.json). O atalho mais rápido é importar `/` e `/styleguide.html`
-com o plugin **html.to.design**.
+Arquivo: **[Ponto Afeto — Brand & Landing](https://www.figma.com/design/XcmG1Zq8AZRYC3dMiSmHuF/)**, com as páginas Cover, Brand, Design System,
+Desktop Landing Page, Mobile Landing Page, Components e Prototype; variáveis, estilos, componentes com variantes e
+protótipo navegável. Estrutura, nomes, como compartilhar com a cliente e como manter o arquivo sincronizado com o código
+estão em [FIGMA_GUIDE.md](FIGMA_GUIDE.md); os tokens equivalentes estão em [design/tokens.json](design/tokens.json).
 
 ## Documentação
 

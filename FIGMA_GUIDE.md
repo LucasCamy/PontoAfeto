@@ -1,9 +1,22 @@
 # FIGMA_GUIDE.md — especificação para montar o arquivo no Figma
 
-> **Status da integração:** o conector Figma (plugin `design`) estava **sem autenticação** nesta sessão.
-> Por isso **nenhum elemento foi criado diretamente no Figma**. Este guia + `design/tokens.json` +
-> a página `/styleguide.html` formam a especificação completa para montar o arquivo — manualmente,
-> por importação, ou por um agente com o Figma MCP autenticado (veja §11).
+> **Arquivo:** [Ponto Afeto — Brand & Landing](https://www.figma.com/design/XcmG1Zq8AZRYC3dMiSmHuF/) (nos Rascunhos da conta do Lucas, plano gratuito).
+>
+> Criado em 05/10/2026 pela Plugin API do Figma, executada no navegador com a sessão logada (o conector MCP do
+> Figma continuava sem autenticação). Contém: 7 páginas · 58 variáveis (Color com aliases `role/*`, Space, Radius) ·
+> 20 estilos de texto · 3 estilos de sombra · 17 conjuntos de componentes (152 variantes) + Benefit Item, Mobile Menu
+> e 35 ícones como componentes · landing desktop 1440 e mobile 390 montadas com instâncias · protótipo com
+> 2 fluxos, 5 overlays e 60 hotspots · componentes interativos de hover/clique.
+>
+> Este guia continua sendo a especificação de referência para editar, estender ou recriar o arquivo.
+
+### Diferenças entre o arquivo e esta especificação
+
+- Páginas, frames e componentes seguem os nomes abaixo; os textos de descrição ficam ao lado de cada componente na página **Components**.
+- No mobile, a **ficha de encomenda** e o **depoimento em destaque** foram desvinculados (`detach`) para empilhar em coluna. O Figma não mantém a troca de direção do auto layout em instâncias. Para atualizar, edite os componentes e repita o ajuste, ou crie uma variante `breakpoint=mobile`.
+- O selo “feito à mão” usa texto reto (a API não cria texto em caminho circular).
+- Links do **menu mobile** no protótipo apenas fecham o menu: uma sobreposição não consegue rolar a tela de baixo.
+- O dispositivo de apresentação (Desktop / iPhone) é escolhido no painel **Protótipo**; a API não define isso.
 
 ---
 
