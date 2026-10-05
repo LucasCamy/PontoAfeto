@@ -4,7 +4,7 @@ import { chromium } from 'playwright-core'
 import { mkdirSync } from 'node:fs'
 
 const url = process.argv[2] ?? 'http://localhost:5188/'
-const widths = (process.argv[3] ?? '360,375,390,414,768,1024,1280,1440').split(',').map(Number)
+const widths = (process.argv[3] ?? '360,375,390,414,430,768,1024,1280,1440').split(',').map(Number)
 const outDir = process.env.SHOT_DIR ?? 'screenshots'
 mkdirSync(outDir, { recursive: true })
 
@@ -34,6 +34,20 @@ for (const width of widths) {
       .map((el) => `${el.tagName.toLowerCase()}.${String(el.className).slice(0, 80)}`),
   )
   if (overflow > 0) console.error(`[${width}] elementos além da largura:`, wide)
+  // Botões, links e títulos cortados por um contêiner com overflow oculto (não aparecem como scroll horizontal)
+  const clipped = await page.evaluate(() =>
+    [...document.querySelectorAll('a, button, h1, h2, h3')]
+      .filter((el) => el.offsetParent !== null && !el.closest('.overflow-x-auto, [role="dialog"]'))
+      .flatMap((el) => {
+        let p = el.parentElement
+        while (p && !['hidden', 'clip'].includes(getComputedStyle(p).overflowX)) p = p.parentElement
+        if (!p || p === document.body) return []
+        const r = el.getBoundingClientRect()
+        const c = p.getBoundingClientRect()
+        const excess = Math.max(r.right - c.right, c.left - r.left, el.scrollWidth - el.clientWidth)
+        return excess > 2 ? [`${el.tagName.toLowerCase()} "${el.textContent.trim().slice(0, 40)}" (+${Math.round(excess)}px)`] : []
+      }),
+  )
   const brokenImages = await page.evaluate(() =>
     [...document.images].filter((i) => i.complete && i.naturalWidth === 0).map((i) => i.src),
   )
@@ -49,7 +63,7 @@ for (const width of widths) {
       })
     }
   }
-  report.push({ width, horizontalOverflow: overflow, brokenImages: brokenImages.length, errors })
+  report.push({ width, horizontalOverflow: overflow, clipped, brokenImages: brokenImages.length, errors })
   await page.close()
 }
 await browser.close()

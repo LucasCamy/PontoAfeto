@@ -65,7 +65,7 @@ export function Hero() {
           <motion.p {...enter(0.26)} className="mt-4 max-w-[34rem] text-lg leading-relaxed text-cocoa-mid">
             {site.hero.text}
           </motion.p>
-          <motion.div {...enter(0.34)} className="mt-8 flex flex-col gap-3 xs:flex-row">
+          <motion.div {...enter(0.34)} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <ButtonLink href="#produtos" size="lg" iconRight={<ArrowDown size={18} weight="bold" aria-hidden="true" className="transition-transform duration-200 group-hover/btn:translate-y-0.5" />}>
               {site.hero.primaryCta}
             </ButtonLink>
@@ -167,7 +167,7 @@ export function Hero() {
               whileHover={reduce ? undefined : { rotate: -2 }}
               transition={{ type: 'spring', stiffness: 160, damping: 14, delay: 0.9 }}
               style={{ transformOrigin: '50% 0%' }}
-              className="absolute bottom-[34%] right-[-4px] origin-top rounded-[10px_10px_14px_14px] bg-ivory px-4 pb-3 pt-6 text-left shadow-paper ring-1 ring-sand-line sm:bottom-[38%] sm:right-[-14px]"
+              className="absolute bottom-[34%] right-2 origin-top rounded-[10px_10px_14px_14px] bg-ivory px-4 pb-3 pt-6 text-left shadow-paper ring-1 ring-sand-line sm:bottom-[38%] sm:right-[-14px]"
               aria-label={`Ver detalhes: ${tagProduct.name}, ${formatPrice(tagProduct.price)}`}
             >
               <span className="absolute left-1/2 top-2 size-2.5 -translate-x-1/2 rounded-full bg-cream ring-1 ring-cocoa/40" aria-hidden="true" />

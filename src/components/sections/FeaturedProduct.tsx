@@ -52,13 +52,13 @@ export function FeaturedProduct() {
           </p>
           <p className="mt-4 leading-relaxed text-cocoa-mid">{product.details}</p>
 
-          <dl className="mt-7 grid grid-cols-1 overflow-hidden rounded-2xl bg-ivory text-sm shadow-soft xs:grid-cols-3">
+          <dl className="mt-7 grid grid-cols-1 overflow-hidden rounded-2xl bg-ivory text-sm shadow-soft sm:grid-cols-3">
             {[
               { k: 'Produção', v: `cerca de ${pluralDays(product.productionDays)}` },
               { k: 'Medidas', v: product.dimensions },
               { k: 'Materiais', v: 'Algodão mercerizado e forro de tricoline' },
             ].map((item, i) => (
-              <div key={item.k} className={`p-4 ${i > 0 ? 'border-t border-dashed border-sand-line xs:border-l xs:border-t-0' : ''}`}>
+              <div key={item.k} className={`p-4 ${i > 0 ? 'border-t border-dashed border-sand-line sm:border-l sm:border-t-0' : ''}`}>
                 <dt className="text-[0.72rem] font-bold uppercase tracking-[0.12em] text-cocoa-mid">{item.k}</dt>
                 <dd className="mt-1 font-semibold leading-snug text-ink">{item.v}</dd>
               </div>
@@ -78,7 +78,7 @@ export function FeaturedProduct() {
           <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">
             <Price product={product} size="lg" />
           </div>
-          <div className="mt-4 flex flex-col gap-3 xs:flex-row">
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Button
               size="lg"
               icon={<ShoppingBagOpen size={22} weight="duotone" aria-hidden="true" />}

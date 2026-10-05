@@ -12,14 +12,14 @@ export function FinalCTA() {
     <section aria-labelledby="cta-final-titulo" className="px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
       <Reveal className="relative mx-auto max-w-[1320px] overflow-hidden rounded-[36px] bg-terracotta-deep text-white sm:rounded-[48px]">
         <div className="stitch-border pointer-events-none absolute inset-0 rounded-[inherit] text-white" aria-hidden="true" />
-        <div className="grid items-center gap-12 p-7 sm:p-12 lg:grid-cols-[1.1fr_1fr] lg:p-16">
+        <div className="grid items-center gap-12 p-6 sm:p-12 lg:grid-cols-[1.1fr_1fr] lg:p-16">
           <div className="relative">
             <LogoMark tone="light" size={52} />
-            <h2 id="cta-final-titulo" className="mt-5 text-[2.3rem] text-white sm:text-[3.4rem]" style={{ fontVariationSettings: "'SOFT' 100, 'WONK' 1" }}>
+            <h2 id="cta-final-titulo" className="mt-5 text-[2rem] text-white sm:text-[3.4rem]" style={{ fontVariationSettings: "'SOFT' 100, 'WONK' 1" }}>
               {site.finalCta.title}
             </h2>
             <p className="mt-4 max-w-md text-lg text-white/85">{site.finalCta.text}</p>
-            <div className="mt-8 flex flex-col gap-3 xs:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ButtonLink href="#produtos" variant="cream" size="lg" iconRight={<ArrowRight size={18} weight="bold" aria-hidden="true" />}>
                 Ver produtos
               </ButtonLink>
