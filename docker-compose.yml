@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    image: ponto-afeto-landing:latest
+    container_name: ponto-afeto
+    ports:
+      - "${PORT:-8080}:80"
+    restart: unless-stopped

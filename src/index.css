@@ -1,0 +1,188 @@
+@import 'tailwindcss' source('.');
+
+/*
+ * Ponto Afeto — Cozy Handmade Studio
+ * Tokens espelhados em design/tokens.json (variáveis do Figma).
+ * Ao alterar um valor aqui, altere também no tokens.json e no Figma.
+ */
+
+@theme {
+  /* Paleta base */
+  --color-cream: #fff8ef;
+  --color-ivory: #fffdf9;
+  --color-sand: #f3e6d6;
+  --color-sand-line: #e8d7c3;
+  --color-terracotta: #d98268;
+  --color-terracotta-deep: #b0553d;
+  --color-terracotta-ink: #8f4230;
+  --color-rose: #e9a6a6;
+  --color-rose-soft: #f8e1dc;
+  --color-butter: #f4d06f;
+  --color-butter-soft: #fbedc4;
+  --color-sage: #a8b89f;
+  --color-sage-soft: #e3eadc;
+  --color-sage-deep: #4a6b45;
+  --color-sage-ink: #3a5636;
+  --color-lavender: #b9b0d9;
+  --color-lavender-soft: #ebe7f5;
+  --color-cocoa: #5c4033;
+  --color-cocoa-mid: #765443; /* #8A6654 escurecido para AA em fundos tingidos */
+  --color-cocoa-soft: #8a6654;
+  --color-ink: #3f3029;
+  --color-error: #a63a2b;
+
+  /* Tipografia */
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
+
+  /* Raios: usamos a escala padrão do Tailwind + formas autorais (arco, etiqueta).
+     Valores documentados em design/tokens.json › radius */
+
+  /* Sombras quentes (tingidas de cacau, nunca preto puro) */
+  --shadow-soft: 0 1px 2px rgb(92 64 51 / 0.06), 0 6px 18px -8px rgb(92 64 51 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(92 64 51 / 0.06), 0 22px 40px -18px rgb(92 64 51 / 0.32);
+  --shadow-paper: 0 1px 0 rgb(255 255 255 / 0.8) inset, 0 10px 30px -12px rgb(92 64 51 / 0.25);
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-soft: cubic-bezier(0.55, 0, 0.75, 0.2);
+
+  --breakpoint-xs: 26rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 100, 'WONK' 0;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
+    text-wrap: balance;
+    color: var(--color-cocoa);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-butter);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-terracotta-deep);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  button,
+  [role='button'],
+  a,
+  label[for],
+  select,
+  summary {
+    cursor: pointer;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@layer components {
+  /* Grão de papel: fixo e sem eventos, para não repintar ao rolar */
+  .paper-grain::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.32;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .25 0 0 0 0 .2 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Linha pontilhada que imita costura */
+  .stitch-line {
+    height: 2px;
+    background-image: linear-gradient(to right, currentColor 0 10px, transparent 10px 18px);
+    background-size: 18px 2px;
+    border-radius: 2px;
+  }
+
+  .stitch-border {
+    outline: 1.5px dashed color-mix(in srgb, currentColor 45%, transparent);
+    outline-offset: -8px;
+  }
+
+  /* Textura sutil de pontos de crochê para fundos de seção */
+  .stitch-texture {
+    background-image: radial-gradient(
+      circle at 50% 50%,
+      color-mix(in srgb, var(--color-cocoa) 9%, transparent) 1.2px,
+      transparent 1.6px
+    );
+    background-size: 14px 14px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-terracotta-ink);
+  }
+
+  .hand-note {
+    font-family: var(--font-hand);
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
