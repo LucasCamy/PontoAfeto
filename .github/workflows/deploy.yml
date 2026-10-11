@@ -34,7 +34,7 @@ jobs:
           images: ghcr.io/${{ github.repository }}
           tags: |
             type=raw,value=latest
-            type=sha
+            type=raw,value=${{ github.sha }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
@@ -45,3 +45,26 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy-to-k8s:
+    name: Deploy to Kubernetes via Tailscale
+    needs:
+      - build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conectar à rede Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
+      - name: Configurar Kubeconfig
+        uses: azure/k8s-set-context@v4
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+
+      - name: Atualizar Deployment no Kubernetes
+        run: |
+          REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          kubectl set image deployment/pontoafeto -n apps pontoafeto=ghcr.io/${REPO_OWNER}/pontoafeto:${{ github.sha }}
+          kubectl rollout status deployment/pontoafeto -n apps --timeout=120s
